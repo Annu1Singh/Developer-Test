@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar pb;
     List<Movie> data;
     private TextView nothing_found_tv;
-    private Button search_btn;
+    private ImageView search_btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         search_txt_input_et = findViewById(R.id.search_txt_input_et);
         movie_rv = findViewById(R.id.movie_rv);
         nothing_found_tv = findViewById(R.id.nothing_found_tv);
-        search_btn = findViewById(R.id.search_btn);
+        search_btn = findViewById(R.id.search_iv);
         pb = findViewById(R.id.pb);
         nothing_found_tv.setVisibility(View.VISIBLE);
         nothing_found_tv.setText(R.string.initial_msg);
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
     private void setWhenBtnClick() {
         search_btn.setOnClickListener(view -> {
             try {
-                if (search_txt_input_et.toString().length() >= 3) {
+                if (search_txt_input_et.getText().toString().length() >= 3) {
                     getMovieData(search_txt_input_et.getText().toString().trim());
                 } else {
                     nothing_found_tv.setVisibility(View.VISIBLE);
