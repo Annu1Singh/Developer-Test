@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar pb;
     List<Movie> data;
     private TextView nothing_found_tv;
+    private Button search_btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +53,8 @@ public class MainActivity extends AppCompatActivity {
         try {
             init();
             prepareLocalColors();
-            implementSearch();
+            setApiOnImeiActionSearch();
+            setWhenBtnClick();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -62,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         search_txt_input_et = findViewById(R.id.search_txt_input_et);
         movie_rv = findViewById(R.id.movie_rv);
         nothing_found_tv = findViewById(R.id.nothing_found_tv);
+        search_btn = findViewById(R.id.search_btn);
         pb = findViewById(R.id.pb);
         nothing_found_tv.setVisibility(View.VISIBLE);
         nothing_found_tv.setText(R.string.initial_msg);
@@ -75,35 +79,36 @@ public class MainActivity extends AppCompatActivity {
         colors.put("blue", Color.parseColor("#0000FF"));
     }
 
-    private void implementSearch() {
-        search_txt_input_et.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                try {
-                    if (editable.toString().length() > 0) {
-                        getMovieData(editable.toString());
-                    } else {
-                        nothing_found_tv.setVisibility(View.VISIBLE);
-                        nothing_found_tv.setText(getResources().getString(R.string.initial_msg));
-                        pb.setVisibility(View.GONE);
-                        movie_rv.setVisibility(View.GONE);
-                    }
-                }catch (Exception e){
-                    e.printStackTrace();
+    private void setApiOnImeiActionSearch(){
+        search_txt_input_et.setOnEditorActionListener((v, actionId, keyEvent) -> {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                if (v.getText().toString().length() >= 3) {
+                    getMovieData(v.getText().toString());
+                    return true;
+                } else {
+                    nothing_found_tv.setVisibility(View.VISIBLE);
+                    nothing_found_tv.setText(getResources().getString(R.string.mini_length_msg));
                 }
             }
+            return false;
         });
+    }
 
+    private void setWhenBtnClick() {
+        search_btn.setOnClickListener(view -> {
+            try {
+                if (search_txt_input_et.toString().length() >= 3) {
+                    getMovieData(search_txt_input_et.getText().toString().trim());
+                } else {
+                    nothing_found_tv.setVisibility(View.VISIBLE);
+                    nothing_found_tv.setText(getResources().getString(R.string.mini_length_msg));
+                    pb.setVisibility(View.GONE);
+                    movie_rv.setVisibility(View.GONE);
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        });
     }
 
     private void getMovieData(String keyword) {

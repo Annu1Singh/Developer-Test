@@ -10,7 +10,7 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/search_txt_input_et"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="@dimen/_40sdp"
         android:background="@drawable/bg_white_round_border_one_dp_teal"
         android:drawableStart="@drawable/ic_baseline_search_24"
@@ -19,10 +19,22 @@
         android:paddingEnd="@dimen/_8sdp"
         android:gravity="start|center"
         android:hint="@string/search_here"
+        android:imeOptions="actionSearch"
         android:singleLine="true"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/search_btn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/search_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_white_round_border_one_dp_teal"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/ok"
+        android:layout_marginStart="@dimen/_5sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/search_txt_input_et"/>
 
     <ProgressBar
         android:id="@+id/pb"
