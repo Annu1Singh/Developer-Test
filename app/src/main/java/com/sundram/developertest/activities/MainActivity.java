@@ -86,8 +86,7 @@ public class MainActivity extends AppCompatActivity {
                     getMovieData(v.getText().toString());
                     return true;
                 } else {
-                    nothing_found_tv.setVisibility(View.VISIBLE);
-                    nothing_found_tv.setText(getResources().getString(R.string.mini_length_msg));
+                    Toast.makeText(MainActivity.this,getResources().getString(R.string.mini_length_msg),Toast.LENGTH_SHORT).show();
                 }
             }
             return false;
@@ -100,10 +99,8 @@ public class MainActivity extends AppCompatActivity {
                 if (search_txt_input_et.getText().toString().length() >= 3) {
                     getMovieData(search_txt_input_et.getText().toString().trim());
                 } else {
-                    nothing_found_tv.setVisibility(View.VISIBLE);
-                    nothing_found_tv.setText(getResources().getString(R.string.mini_length_msg));
-                    pb.setVisibility(View.GONE);
-                    movie_rv.setVisibility(View.GONE);
+                    Toast.makeText(MainActivity.this,getResources().getString(R.string.mini_length_msg),Toast.LENGTH_SHORT).show();
+
                 }
             }catch (Exception e){
                 e.printStackTrace();

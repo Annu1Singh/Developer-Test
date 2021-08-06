@@ -2,25 +2,25 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/container"
-    android:background="@drawable/bg_white_round_border_one_dp_teal"
-    android:orientation="vertical"
     android:layout_marginTop="@dimen/_5sdp"
     android:layout_marginBottom="@dimen/_5sdp"
-    android:padding="@dimen/_5sdp"
-    >
+    android:background="@drawable/bg_white_round_border_one_dp_teal"
+    android:orientation="vertical"
+    android:padding="@dimen/_5sdp">
+
     <TextView
         android:id="@+id/title"
         style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
+        android:text="@string/app_name"
         app:layout_constraintEnd_toStartOf="@id/image"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:text="@string/app_name" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/year"
@@ -28,11 +28,12 @@
         android:layout_height="wrap_content"
         android:drawablePadding="5dp"
         android:text="@string/app_name"
-        app:layout_constraintEnd_toStartOf="@id/image"
-        app:layout_constraintTop_toBottomOf="@id/title"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/black"
         app:drawableStartCompat="@drawable/ic_baseline_access_time_24"
-        app:drawableTint="@color/teal_700" />
+        app:drawableTint="@color/black"
+        app:layout_constraintEnd_toStartOf="@id/image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title" />
 
     <TextView
         android:id="@+id/runtime"
@@ -40,12 +41,13 @@
         android:layout_height="wrap_content"
         android:drawablePadding="5dp"
         android:text="@string/app_name"
-        app:layout_constraintEnd_toStartOf="@id/image"
-        app:layout_constraintTop_toBottomOf="@id/year"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/black"
         app:drawableStartCompat="@drawable/ic_baseline_star_24"
+        app:layout_constraintEnd_toStartOf="@id/image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/year"
         tools:targetApi="m"
-        app:drawableTint="@color/teal_700" />
+        app:drawableTint="@color/black" />
 
     <ImageView
         android:id="@+id/image"

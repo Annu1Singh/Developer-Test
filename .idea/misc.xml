@@ -4,10 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable-v24/bg_white_round_border_one_dp_teal.xml" value="0.22083333333333333" />
+        <entry key="app/src/main/res/drawable-v24/ic_baseline_access_time_24.xml" value="0.22083333333333333" />
+        <entry key="app/src/main/res/drawable-v24/ic_baseline_star_24.xml" value="0.22083333333333333" />
         <entry key="app/src/main/res/drawable/splash_bg.xml" value="0.22083333333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2046875" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.2046875" />
-        <entry key="app/src/main/res/layout/single_movie_item.xml" value="0.2046875" />
+        <entry key="app/src/main/res/layout/single_movie_item.xml" value="0.33" />
       </map>
     </option>
   </component>
