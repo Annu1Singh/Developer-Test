@@ -80,23 +80,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setApiOnImeiActionSearch(){
-        search_txt_input_et.setOnEditorActionListener((v, actionId, keyEvent) -> {
-            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                if (v.getText().toString().length() >= 3) {
-                    getMovieData(v.getText().toString());
-                    return true;
-                } else {
-                    Toast.makeText(MainActivity.this,getResources().getString(R.string.mini_length_msg),Toast.LENGTH_SHORT).show();
+        try {
+            search_txt_input_et.setOnEditorActionListener((v, actionId, keyEvent) -> {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    if (v.getText().toString().trim().length() >= 3) {
+                        getMovieData(v.getText().toString().trim());
+                        return true;
+                    } else {
+                        Toast.makeText(MainActivity.this,getResources().getString(R.string.mini_length_msg),Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
-            return false;
-        });
+                return false;
+            });
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     private void setWhenBtnClick() {
         search_btn.setOnClickListener(view -> {
             try {
-                if (search_txt_input_et.getText().toString().length() >= 3) {
+                if (search_txt_input_et.getText().toString().trim().length() >= 3) {
                     getMovieData(search_txt_input_et.getText().toString().trim());
                 } else {
                     Toast.makeText(MainActivity.this,getResources().getString(R.string.mini_length_msg),Toast.LENGTH_SHORT).show();
